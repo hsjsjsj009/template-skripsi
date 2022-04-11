@@ -1,0 +1,152 @@
+\documentclass[11pt, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{xargs}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage[shortlabels]{enumitem}
+\usepackage[backend=biber,style=apa,citestyle=authoryear-ibid]{biblatex}
+\usepackage{setspace}
+\usepackage{sectsty}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{times}
+\usepackage[a4paper, margin=1.18in]{geometry}
+\usepackage[font={small,bf}, center]{caption}
+
+\restylefloat{table}
+\restylefloat{figure}
+ 
+\makeatletter
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+% Bibfile
+\addbibresource{cite.bib}
+
+% Table Config
+\def\arraystretch{1.8}
+
+\usepackage{sectsty}
+
+
+\sectionfont{\large}
+\subsectionfont{\large}
+\subsubsectionfont{\large}
+\paragraphfont{\large}
+
+\usepackage{titlesec}
+
+\renewcommand{\figurename}{Gambar}
+\renewcommand{\tablename}{Tabel}
+\renewcommand{\lstlistingname}{Kode}
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+\renewcommand*\l@figure{\@dottedtocline{1}{0pt}{2.3em}}
+\renewcommand*\l@table{\@dottedtocline{1}{0pt}{2.3em}}
+\renewcommand*\l@lstlisting{\@dottedtocline{1}{0pt}{2.3em}}
+
+% Listing
+\lstdefinestyle{mystyle}{
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Header Style
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{
+    \textbf{Universitas Indonesia}
+}
+\fancypagestyle{firstsectionpage}{
+    \rhead{}
+    \lhead{}
+    \cfoot{\thepage}
+}
+\fancypagestyle{nouniversityname}{
+    \rfoot{}
+}
+
+% Self Defined Command
+\newcommand{\newsectionpage}[1]{
+    \newpage
+    \begin{center}
+        \stepcounter{section}
+        \section*{\centering BAB \thesection}
+        \thispagestyle{firstsectionpage}
+        \large
+        \textbf{#1}
+        \addcontentsline{toc}{section}{BAB \thesection: #1}
+    \end{center}
+}
+\newcommand{\newinvisiblesectionpage}[1]{
+    \newpage
+    \begin{center}
+        \section*{#1}
+        \thispagestyle{firstsectionpage}
+        \addcontentsline{toc}{section}{#1}
+    \end{center}
+}
+\newcommand{\itembold}[1]{
+    \item \textbf{#1}
+}
+\newcommand{\addimage}[4][0.8\textwidth]{\begin{figure}[H]
+        \centering
+        \includegraphics[width=#1]{#2}
+        \caption{#3}
+        \label{fig:#4}
+    \end{figure}}
+\newcommand{\noindentpar}{\par\noindent}
+\newcommand{\dotfillsparse}[1]{\leavevmode \cleaders \hb@xt@ #1em{\hss .\hss }\hfill \kern \z@}
+\def\l@figure{\@dottedtocline{1}{0.5em}{1em}}
+\makeatother
+
+\begin{document}
+% Title Page
+\pagenumbering{roman}
+\include{title-page.tex}
+\setstretch{1.5}
+\include{pernyataan-orisinalitas.tex}
+\include{pengesahan.tex}
+\include{pengantar.tex}
+\include{persetujuan-publikasi.tex}
+\include{abstrak.tex}
+\include{daftar-isi.tex}
+\include{daftar-gambar.tex}
+\include{daftar-tabel.tex}
+\include{daftar-kode.tex}
+\include{daftar-lampiran.tex}
+
+\pagenumbering{arabic}
+\fancyhead[RE,LO]{\thepage}
+\fancyfoot[C]{}
+\setcounter{page}{1}
+
+\include{pendahuluan.tex}
+\include{studi-literatur.tex}
+\include{desain-implementasi.tex}
+\include{hasil-pembahasan.tex}
+\include{penutup.tex}
+\include{daftar-referensi.tex}
+
+\end{document}

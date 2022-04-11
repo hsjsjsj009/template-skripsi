@@ -1,0 +1,5 @@
+main.*
+!main.tex
+__latexindent_temp.tex
+*.aux
+out
